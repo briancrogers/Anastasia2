@@ -25,14 +25,10 @@ LoadModule anastasia_module modules/mod_anastasia.so
 
 and 
 
-<Location /AnaServer>
-
+	<Location /AnaServer>
 		SetHandler anastasia-handler
-		
 		Allow from all
-		
-		 Require all granted
-		 
+		Require all granted	 
 	</Location>
   
   All should work! good luck.
@@ -48,4 +44,26 @@ and
   # On Windows etc
   
   Good luck. If you do it and it works please doucment.
+  
+  #MySQL support
+  
+  Version 1 of Anastasia had some neat mySQL support built in. The idea was to hook Anastasia direct to a mySQL database primarily for access control, and also to use databases for some complex data retrieval where XML is not so smart. However, we ended up going in another direction for access control (essentially -- using a Django set up for user management). Some publications did use MySQL however. For these, we used the mysqltcl library as follows:
+  
+  a. We installed the libmysqltcl3.052.so after compilation in /usr/lib/tcltk/x86_64-linux-gnu/mysqltcl-3.052/
+  
+  b. We included this line at the start of each .tcl script file using a mySQL database:
+  
+          load "/usr/lib/tcltk/x86_64-linux-gnu/mysqltcl-3.052/libmysqltcl3.052.so"
+ 
+  c. We connect to the database in that scripting file so:
+  
+  	set m [mysqlconnect -user root -db mysql -password MYPASSWORD]
+	mysqluse $m MYDATABASE
+	
+  We then use calls as set out in the mysqltcl documentation. For example:
+  
+  	set dbResults [mysqlsel $m $sql -list]
+	
+  uses the mysqltcl command mysqlsel to run a SQL query in $sql on our database $m and returns the results as a tcl list. Very nifty.
+
 
