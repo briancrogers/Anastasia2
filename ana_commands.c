@@ -1033,7 +1033,7 @@ int get_find_sg_text(ClientData client_data, Tcl_Interp* tcl_interp,  int inargc
   //now we get the elements found out of the array and stick them in the array
   for (c=0; c<spec_num2; c++) { 
    bounds_ptr the_return= (bounds_ptr) (this_book_ptr->search_texts_found)+c;
-   write_log(apr_psprintf(current_p, "found text start %d", (the_return)->start_el));
+//   write_log(apr_psprintf(current_p, "found text start %d", (the_return)->start_el));
    sprintf(this_el,"%d", (the_return)->start_el);
    sprintf(cmd_el,"tsBegEl(%d)",c + 1);
    tcl_return = Tcl_SetVar(tcl_interp, cmd_el, this_el, 0);
@@ -1210,7 +1210,7 @@ int get_ana_content(ClientData client_data, Tcl_Interp* tcl_interp, int argc, ch
   apr_size_t _count = sizeof(char) * getlen;
   apr_file_read(this_book_ptr->in_sgv, tcl_return, &_count);
   if (_count != (sizeof(char) * getlen)) {
-    write_log("Error reading Anastasia .sgv file.\n");
+//    write_log("Error reading Anastasia .sgv file.\n");
     apr_pool_destroy(current_p);
     return check_process_book(this_book_ptr, this_style_ptr, "content", __FILE__, __LINE__);
   }
@@ -1238,7 +1238,7 @@ int get_ana_content(ClientData client_data, Tcl_Interp* tcl_interp, int argc, ch
    return check_process_book(this_book_ptr, this_style_ptr, "content", __FILE__, __LINE__);
   }
   if (this_book_ptr==NULL) {
-   write_log("this_book_ptr is null");
+//   write_log("this_book_ptr is null");
   }
 //   write_log("diong element 1b");
   if (!make_new_tcl_style(spec_str, this_book_ptr->bookname, &content_style, content_fspec, this_book_ptr, false, false)) {
@@ -1416,7 +1416,7 @@ int get_next_chars(ClientData client_data, Tcl_Interp* tcl_interp, int argc, cha
   apr_size_t _count = sizeof(char) * nchars;
   apr_file_read(this_book_ptr->in_sgv, temp_txt, &_count);
   if (_count != (sizeof(char) * nchars)) {
-   write_log("Error reading Anastasia .sgv file.\n");
+//   write_log("Error reading Anastasia .sgv file.\n");
    ana_free(&(this_book_ptr->anastasia_memory), temp_txt);
    return check_process_book(this_book_ptr, this_style_ptr, "nextChars", __FILE__, __LINE__);
   }
@@ -1508,7 +1508,7 @@ int get_these_chars(ClientData client_data, Tcl_Interp* tcl_interp, int argc, ch
   temp_txt= (char *) ana_malloc(&(this_book_ptr->anastasia_memory), (end-start * sizeof(char)) +1, __FILE__, __LINE__);
   if (temp_txt==NULL) {
    char *this_out=apr_psprintf(this_style_ptr->style_pool, "Error in \"theseChars\" command in call from file \"%s\": Error allocating memory.", this_style_ptr->file_name);
-                        write_log(this_out);
+//   write_log(this_out);
    apr_pool_destroy(current_pool);
    return check_process_book(this_book_ptr, this_style_ptr, "theseChars", __FILE__, __LINE__);
   }
@@ -1517,7 +1517,7 @@ int get_these_chars(ClientData client_data, Tcl_Interp* tcl_interp, int argc, ch
   apr_size_t _count = sizeof(char) * end-start;
   apr_file_read(this_book_ptr->in_sgv, temp_txt, &_count);
   if (_count != (sizeof(char) * end-start)) {
-   write_log("Error reading Anastasia .sgv file.\n");
+//   write_log("Error reading Anastasia .sgv file.\n");
    ana_free(&(this_book_ptr->anastasia_memory), temp_txt);
    return check_process_book(this_book_ptr, this_style_ptr, "theseChars", __FILE__, __LINE__);
   }
@@ -1598,7 +1598,7 @@ int get_prev_chars(ClientData client_data, Tcl_Interp* tcl_interp, int argc, cha
   apr_size_t _count = sizeof(char) * nchars;
   apr_file_read(this_book_ptr->in_sgv, temp_txt, &_count);
   if (_count != nchars) {
-   write_log("Error reading Anastasia .sgv file.\n");
+//   write_log("Error reading Anastasia .sgv file.\n");
    ana_free(&(this_book_ptr->anastasia_memory), temp_txt);
    return check_process_book(this_book_ptr, this_style_ptr, "prevChars", __FILE__, __LINE__);
   }
@@ -2042,7 +2042,7 @@ int make_ana_vbase(ClientData client_data, Tcl_Interp* tcl_interp, int argc, cha
   apr_size_t _count = sizeof(char) * getlen;
   apr_file_read(this_book_ptr->in_sgv, wit_name, &_count);
   if (_count != (sizeof(char) * getlen)) {
-    write_log("Error reading Anastasia .sgv file.\n");
+//    write_log("Error reading Anastasia .sgv file.\n");
     apr_pool_destroy(current_pool);
     return TCL_OK;
                 }
@@ -2252,7 +2252,7 @@ int search_ana_vbase(ClientData client_data, Tcl_Interp* tcl_interp, int argc, c
    	     _count = (this_book_ptr)->record_size*(this_book_ptr)->n_rdgs;
              apr_file_read(vbse_in, (this_book_ptr)->vbase, &_count);
              if (_count != (this_book_ptr)->record_size*(this_book_ptr)->n_rdgs) {
-                  write_log("Error reading in vbs file.\n");
+ //                 write_log("Error reading in vbs file.\n");
                 (this_book_ptr)->vbase=NULL;
   return TCL_OK;
             }
@@ -2391,7 +2391,7 @@ int ana_db_connect(ClientData client_data, Tcl_Interp* tcl_interp, int argc, cha
  }
  //Check that a connection doesn't already exist
  if (this_book_ptr->database.host!=NULL) {
-   write_log("Closing the connection to the database");
+//   write_log("Closing the connection to the database");
    mysql_close(&(this_book_ptr->database));
  }
  mysql_result = mysql_real_connect(&(this_book_ptr->database), NULL, username, password, db, port, socket, 0);
@@ -2410,7 +2410,7 @@ int ana_db_disconnect(ClientData client_data, Tcl_Interp* tcl_interp, int argc, 
  style_ptr this_style_ptr = NULL;
  create_process_book(&this_book_ptr, &this_style_ptr, tcl_interp, NULL, NULL, NULL, NULL);
  if (this_book_ptr==NULL || this_style_ptr==NULL) {
-  write_log("Error processing Anastasia style TCL extension function \"dbDisconnect\". Critical Error!.");
+//  write_log("Error processing Anastasia style TCL extension function \"dbDisconnect\". Critical Error!.");
   return TCL_OK;
  }
  mysql_close(&(this_book_ptr->database));
