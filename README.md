@@ -6,6 +6,7 @@ On all systems: Anastasia is configured to work with Apache 2 (2.4.41 as of May 
 # On Linux/unix systems
 
 a. Get the source for tcl. 8.4.13. cd into the unix folder, and configure as follows:
+
 ./configure  --enable-threads --disable-shared --disable-corefoundation
 
 This will build a makefile. Then make. This should put libtcl8.4.a in your unix folder. Move this into the same folder as the Anastasia source.
@@ -25,9 +26,13 @@ LoadModule anastasia_module modules/mod_anastasia.so
 and 
 
 <Location /AnaServer>
-		SetHandler anastasia-handler	
+
+		SetHandler anastasia-handler
+		
 		Allow from all
+		
 		 Require all granted
+		 
 	</Location>
   
   All should work! good luck.
