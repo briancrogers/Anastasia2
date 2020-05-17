@@ -7,7 +7,7 @@ On all systems: Anastasia is configured to work with Apache 2 (2.4.41 as of May 
 
 a. Get the source for tcl. 8.4.13. cd into the unix folder, and configure as follows:
 
-./configure  --enable-threads --disable-shared --disable-corefoundation
+	./configure  --enable-threads --disable-shared --disable-corefoundation
 
 This will build a makefile. Then make. This should put libtcl8.4.a in your unix folder. Move this into the same folder as the Anastasia source.
 
@@ -37,7 +37,7 @@ and
   
   As a Unix based system -- it would be nice if exactly the same configuration as for unix worked. It is possible to use a complicated Mac only configuration, using gcc instead of apxs. For example: the tcl library is linked in a separate step as follows:
   
-  gcc -DSHARED_MODULE -bundle -undefined suppress  -flat_namespace   -o mod_anastasia.so  Release/*.o libtcl8.5.a 
+  	gcc -DSHARED_MODULE -bundle -undefined suppress  -flat_namespace   -o mod_anastasia.so  Release/*.o libtcl8.5.a 
   
   We hope never to go down that route again.
   
@@ -45,7 +45,7 @@ and
   
   Good luck. If you do it and it works please doucment.
   
-  #MySQL support
+  # MySQL support
   
   Version 1 of Anastasia had some neat mySQL support built in. The idea was to hook Anastasia direct to a mySQL database primarily for access control, and also to use databases for some complex data retrieval where XML is not so smart. However, we ended up going in another direction for access control (essentially -- using a Django set up for user management). Some publications did use MySQL however. For these, we used the mysqltcl library as follows:
   
@@ -53,7 +53,7 @@ and
   
   b. We included this line at the start of each .tcl script file using a mySQL database:
   
-          load "/usr/lib/tcltk/x86_64-linux-gnu/mysqltcl-3.052/libmysqltcl3.052.so"
+        load "/usr/lib/tcltk/x86_64-linux-gnu/mysqltcl-3.052/libmysqltcl3.052.so"
  
   c. We connect to the database in that scripting file so:
   
