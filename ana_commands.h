@@ -1,0 +1,47 @@
+int get_ana_attr(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_attr_list(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_attr_names(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_ancestor(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_lsibling(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_rsibling(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_descendant(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_previous_el(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_next_el(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_child(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_sDataName(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_sDataValue(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_content_length(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_file_length(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_name(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_path(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_start_sg(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_end_sg(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_find_sg_el(ClientData client_data,  Tcl_Interp* tcl_interp,  int inargc,  char **inargv);
+int get_find_sg_text(ClientData client_data,  Tcl_Interp* tcl_interp,  int inargc,  char **inargv);
+int get_count_sg(ClientData client_data,  Tcl_Interp* tcl_interp,  int inargc,  char **inargv);
+int get_ana_content(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_ana_content_type(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_next_chars(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_these_chars(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int get_prev_chars(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int make_kwic (ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int ana_puts(ClientData client_data,  Tcl_Interp* tcl_interp,  int argc,  char **argv);
+int ana_set_header(ClientData client_data, Tcl_Interp *tcl_interp, int argc, char **argv);
+int get_ana_setCookie(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int get_ana_getCookie(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int get_ana_getCookieNames(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int make_ana_vbase(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int search_ana_vbase(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int combine_ana_vbase(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int tst_srch_cond(search_vbase_ptr this_base, cond_ptr this_cond, process_book_ptr this_book_ptr);
+int set_content_type(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+#if defined(ANA_MYSQL)
+	int ana_db_connect(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+	int ana_db_disconnect(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+	int ana_db_query(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+	int ana_db_free_result(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+	int ana_db_get_results(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+#endif
+int ana_writeErrorMessage(ClientData client_data, Tcl_Interp* tcl_interp, int argc, char **argv);
+int ana_global_httppost(ClientData client_data, Tcl_Interp *tcl_interp, int argc, char **argv);
+
