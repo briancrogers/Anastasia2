@@ -47,7 +47,7 @@ and
   
   # MySQL support
   
-  Version 1 of Anastasia had some neat mySQL support built in. The idea was to hook Anastasia direct to a mySQL database primarily for access control, and also to use databases for some complex data retrieval where XML is not so smart. However, we ended up going in another direction for access control (essentially -- using a Django set up for user management). Some publications did use MySQL however. For these, we used the mysqltcl library as follows:
+  Version 1 of Anastasia had some neat mySQL support built in. The idea was to hook Anastasia direct to a mySQL database primarily for access control, and also to use databases for some complex data retrieval where XML is not so smart. However, we ended up going in another direction for access control (essentially -- using a Django set up for user management) and we stopped maintaining the mySQL functions. The code is still embedded into the files however: you are welcome to resurrect these and good luck.  However, some publications did use MySQL however. For these, the mysqltcl library is now used, as follows:
   
   a. We installed the libmysqltcl3.052.so after compilation in /usr/lib/tcltk/x86_64-linux-gnu/mysqltcl-3.052/
   
