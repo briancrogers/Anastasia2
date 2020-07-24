@@ -1,5 +1,8 @@
 # Anastasia2
-Anastasia: Apache module for scripting large and complex XML (and SGML) documents iwth TCL
+
+Anastasia: Apache module for scripting large and complex XML (and SGML) documents with TCL. See https://sourceforge.net/projects/anastasia/ and http://anastasia.sourceforge.net/ for earlier forms of Anastasia and links to documentation, etc. Getting started documentation is at http://www.sd-editions.com/AnaServer?AnaStart+0+start.anv and http://www.sd-editions.com/AnaServer?teidoc+0+start.anv.  Reference documentation is at http://www.sd-editions.com/AnaServer?AnaRef+0+start.anv.
+
+Since 2010, all the development effort which went into Anastasia has now gone into Textual Communities (www.textualcommunities.org). Pretty much all the things which Anastasia used to do are now done by TC, much better. What TC does not do (provide search facilities etc) are either coming or could be done by a zillion other systems.
 
 On all systems: Anastasia is configured to work with Apache 2 (2.4.41 as of May 2020). You need to install Apache 2 with the apxs option so that you can use apxs to compile the Anastasia code into an Apache module (a .so, shared object, file in unix systems). This configuration assumes that you have installed Apache in /usr/local/apache2.
 
