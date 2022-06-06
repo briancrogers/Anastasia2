@@ -6,13 +6,13 @@
 #include "http_protocol.h"
 #include "http_main.h"
 //Tcl includes
-#include "tcl.h"
+#include "tcl/tcl.h"
 #include "ana_config.h"
 #include "ana_memory.h"
-#if defined(WIN32) || defined(LINUX)
+#if defined(WIN32)
 #include "bitstuff.h"
 #else
-#include <bitstring.h>
+#include <bsd/bitstring.h>
 #endif
 
 #if defined(WIN32)

@@ -1,12 +1,12 @@
 //#define MEM_TEST 1
 
 #if !defined(MEM_TEST)
-    #include "apache1/httpd.h"
-    #include "apache1/http_config.h"
-    #include "apache1/http_core.h"
-    #include "apache1/http_log.h"
-    #include "apache1/http_protocol.h"
-    #include "apache1/http_main.h"
+    #include "apache2/httpd.h"
+    #include "apache2/http_config.h"
+    #include "apache2/http_core.h"
+    #include "apache2/http_log.h"
+    #include "apache2/http_protocol.h"
+    #include "apache2/http_main.h"
 #endif
 
 #define ANAHASHSIZE 60013

@@ -162,7 +162,7 @@ void load_in_global_config_file(Tcl_Interp *the_interp, pool *this_pool, int ini
   result=Tcl_EvalFile(the_interp, cfg_file);
   tcl_res = (char *) Tcl_GetStringResult(the_interp);
   if (result!=TCL_OK) {
-   write_log(apr_psprintf(this_pool, "Error loading Anastasia Reader configuration file \"%s\". Error message is \"%s\", in line %d.  This could lead to unexpected results.\n", cfg_file, tcl_res, (the_interp)->errorLine));
+   write_log(apr_psprintf(this_pool, "Error loading Anastasia Reader configuration file \"%s\". Error message is \"%s\", in line %d.  This could lead to unexpected results.\n", cfg_file, tcl_res, Tcl_GetErrorLine(the_interp)));
   }
  } else {
  // write_log("cfg_file is null!\n");
@@ -784,7 +784,7 @@ int make_new_tcl_style(char *anv_file, char *book_name, style_ptr *this_style, b
  if (strcmp(tcl_res, "1")==0) {
   result = Tcl_EvalFile(tcl_interp, tmp_str);
   if (result!=TCL_OK) {
-   write_output((*this_style), this_book, apr_psprintf(style_pool, "<p><font color=red>Error compiling local Anastasia AnaRead.cfg file for \"%s\": %s in line %d. </font></p>",  anv_filename, Tcl_GetStringResult(tcl_interp), tcl_interp->errorLine));
+   write_output((*this_style), this_book, apr_psprintf(style_pool, "<p><font color=red>Error compiling local Anastasia AnaRead.cfg file for \"%s\": %s in line %d. </font></p>",  anv_filename, Tcl_GetStringResult(tcl_interp), Tcl_GetErrorLine(tcl_interp)));
   }
  }
 //Now add all the http_inf variables
@@ -903,7 +903,7 @@ int make_new_tcl_style(char *anv_file, char *book_name, style_ptr *this_style, b
  //write_log("findling load config 9-6-1a");
  if (result!=TCL_OK) {
   tcl_res = (char *) Tcl_GetStringResult(tcl_interp);
-  write_output((*this_style), this_book, apr_psprintf(style_pool, "<p><font color=red>Error compiling Anastasia anv file \"%s\": %s in line %d. </font></p>",  anv_filename, Tcl_GetStringResult(tcl_interp), tcl_interp->errorLine));
+  write_output((*this_style), this_book, apr_psprintf(style_pool, "<p><font color=red>Error compiling Anastasia anv file \"%s\": %s in line %d. </font></p>",  anv_filename, Tcl_GetStringResult(tcl_interp), Tcl_GetErrorLine(tcl_interp)));
  }
  // write_log("findling load config 9-6-1b");
  //Now set up the default settings
@@ -1108,7 +1108,7 @@ int do_start_end_ana_file(int this_el, char *param, style_ptr this_style, proces
                 }
  } else {
   tcl_res = (char *) Tcl_GetStringResult(this_style->tcl_interp);
-  this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, param, tcl_res, this_style->tcl_interp->errorLine);
+  this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, param, tcl_res, Tcl_GetErrorLine(this_style->tcl_interp));
   write_output(this_style, book_now, this_out);
  }
  //check finish: if it is set, return 2 and SKIP calling content
@@ -1176,7 +1176,7 @@ int has_tspec(sgml_obj_ptr this_sgml_el, style_ptr this_style, process_book_ptr 
    }
   } else {
    tcl_res = (char *) Tcl_GetStringResult(this_style->tcl_interp);
-   this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, tcl_cmdstr, tcl_res, this_style->tcl_interp->errorLine);
+   this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, tcl_cmdstr, tcl_res, Tcl_GetErrorLine(this_style->tcl_interp));
    write_log(this_out);
   }
  }
@@ -1336,7 +1336,7 @@ int process_style(sgml_obj_ptr this_sgml_el, style_ptr this_style,  process_book
    }
   } else {
    tcl_res = (char *) Tcl_GetStringResult(this_style->tcl_interp);
-   this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, tcl_cmdstr, tcl_res, this_style->tcl_interp->errorLine);
+   this_out=apr_psprintf(this_style->style_pool, "<p><font color=red>Error processing Anastasia style in file \"%s\" for element \"%s\": %s in line %d</font></p>\n", this_style->file_name, tcl_cmdstr, tcl_res, Tcl_GetErrorLine(this_style->tcl_interp));
    write_output(this_style, this_book, this_out);
    return 0;   
   }
